@@ -8,7 +8,8 @@ namespace Lab6DiegoMorales1132119 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace System::IO;
+	using namespace System::Diagnostics;
 	/// <summary>
 	/// Resumen de MyForm
 	/// </summary>
@@ -191,23 +192,32 @@ namespace Lab6DiegoMorales1132119 {
 	}
 	private: System::Void Button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int ValorBuscar = int::Parse(tbBuscar->Text);
+		Stopwatch^ Timer = gcnew Stopwatch();
+		Timer->Start();
 		int x = PosicionEnHash(ValorBuscar, size);
 		System::Windows::Forms::MessageBox::Show("La posicion en la que se encuentra es: " + x.ToString());
+		Timer->Stop();
+		System::Windows::Forms::MessageBox::Show("Tiempo de ejecución: " + System::Convert::ToString(Timer->Elapsed));
 	}
 	private: System::Int16 PosicionEnHash(int valorBuscar, int size) {
-		int posicion = valorBuscar % (size*2);
+		int posicion = valorBuscar % size;
 		if (System::Convert::ToInt16(TablaHash[posicion]) == valorBuscar)
 			return posicion;
 		while (System::Convert::ToInt16(TablaHash[posicion]) != valorBuscar)
 		{
 			posicion++;
 		}
-		return -1;
+		return posicion;
 	}
 	private: System::Void Button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		int ValorBuscar = int::Parse(tbBuscar->Text);
+		Stopwatch^ Timer = gcnew Stopwatch();
+		Timer->Start();
 		int x = BusquedaLineal(ArregloNum, ValorBuscar, size);
 		System::Windows::Forms::MessageBox::Show("La posicion en la que se encuentra es: " + x.ToString());
+		Timer->Stop();
+		System::Windows::Forms::MessageBox::Show("Tiempo de ejecución: " + System::Convert::ToString(Timer->Elapsed));
+
 	}
 	private: System::Int16 BusquedaLineal(ArrayList^ A, int ValorBuscar, int size) {
 		for (int i = 0; i < size; i++)
@@ -220,8 +230,12 @@ namespace Lab6DiegoMorales1132119 {
 	}
 	private: System::Void BtnBinaria_Click(System::Object^ sender, System::EventArgs^ e) {
 		int ValorBuscar = int::Parse(tbBuscar->Text);
+		Stopwatch^ Timer = gcnew Stopwatch();
+		Timer->Start();
 		int x = BusquedaBinaria(ArregloNum, ValorBuscar, size);
 		System::Windows::Forms::MessageBox::Show("La posicion en la que se encuentra es: " + x.ToString());
+		Timer->Stop();
+		System::Windows::Forms::MessageBox::Show("Tiempo de ejecución: " + System::Convert::ToString(Timer->Elapsed));
 	}
 	private: System::Int16 BusquedaBinaria(ArrayList^ A, int ValorBuscar, int size) {
 		int first = 0;
