@@ -43,6 +43,7 @@ namespace Lab6DiegoMorales1132119 {
 	private: System::Windows::Forms::TextBox^ tbBuscar;
 	private: System::Windows::Forms::Button^ btnSecuencial;
 	private: System::Windows::Forms::Button^ btnBinaria;
+	private: System::Windows::Forms::Label^ label2;
 
 	protected:
 
@@ -50,7 +51,7 @@ namespace Lab6DiegoMorales1132119 {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -66,6 +67,7 @@ namespace Lab6DiegoMorales1132119 {
 			this->tbBuscar = (gcnew System::Windows::Forms::TextBox());
 			this->btnSecuencial = (gcnew System::Windows::Forms::Button());
 			this->btnBinaria = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -86,7 +88,7 @@ namespace Lab6DiegoMorales1132119 {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(290, 25);
+			this->button1->Location = System::Drawing::Point(169, 71);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 40);
 			this->button1->TabIndex = 2;
@@ -96,7 +98,7 @@ namespace Lab6DiegoMorales1132119 {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(290, 97);
+			this->button2->Location = System::Drawing::Point(50, 189);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 40);
 			this->button2->TabIndex = 3;
@@ -106,14 +108,14 @@ namespace Lab6DiegoMorales1132119 {
 			// 
 			// tbBuscar
 			// 
-			this->tbBuscar->Location = System::Drawing::Point(169, 108);
+			this->tbBuscar->Location = System::Drawing::Point(202, 137);
 			this->tbBuscar->Name = L"tbBuscar";
 			this->tbBuscar->Size = System::Drawing::Size(100, 20);
 			this->tbBuscar->TabIndex = 4;
 			// 
 			// btnSecuencial
 			// 
-			this->btnSecuencial->Location = System::Drawing::Point(290, 143);
+			this->btnSecuencial->Location = System::Drawing::Point(169, 189);
 			this->btnSecuencial->Name = L"btnSecuencial";
 			this->btnSecuencial->Size = System::Drawing::Size(75, 40);
 			this->btnSecuencial->TabIndex = 5;
@@ -131,11 +133,21 @@ namespace Lab6DiegoMorales1132119 {
 			this->btnBinaria->UseVisualStyleBackColor = true;
 			this->btnBinaria->Click += gcnew System::EventHandler(this, &MyForm::BtnBinaria_Click);
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(14, 140);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(182, 13);
+			this->label2->TabIndex = 7;
+			this->label2->Text = L"Ingrese el numero que desea buscar:";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(396, 262);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->btnBinaria);
 			this->Controls->Add(this->btnSecuencial);
 			this->Controls->Add(this->tbBuscar);
@@ -178,7 +190,7 @@ namespace Lab6DiegoMorales1132119 {
 		System::Windows::Forms::MessageBox::Show(valores);
 	}
 	private: System::Void LlenarTablaHash(int size) {
-		TablaHash = gcnew Hashtable(size*2);
+		TablaHash = gcnew Hashtable(size * 2);
 		int llave = 0;
 		for each (int num in ArregloNum)
 		{
@@ -195,9 +207,9 @@ namespace Lab6DiegoMorales1132119 {
 		Stopwatch^ Timer = gcnew Stopwatch();
 		Timer->Start();
 		int x = PosicionEnHash(ValorBuscar, size);
-		System::Windows::Forms::MessageBox::Show("La posicion en la que se encuentra es: " + x.ToString());
 		Timer->Stop();
 		System::Windows::Forms::MessageBox::Show("Tiempo de ejecución: " + System::Convert::ToString(Timer->Elapsed));
+		System::Windows::Forms::MessageBox::Show("La posicion en la que se encuentra es: " + x.ToString());
 	}
 	private: System::Int16 PosicionEnHash(int valorBuscar, int size) {
 		int posicion = valorBuscar % size;
@@ -232,6 +244,7 @@ namespace Lab6DiegoMorales1132119 {
 		int ValorBuscar = int::Parse(tbBuscar->Text);
 		Stopwatch^ Timer = gcnew Stopwatch();
 		Timer->Start();
+		ArregloNum->Sort();
 		int x = BusquedaBinaria(ArregloNum, ValorBuscar, size);
 		System::Windows::Forms::MessageBox::Show("La posicion en la que se encuentra es: " + x.ToString());
 		Timer->Stop();
@@ -261,5 +274,5 @@ namespace Lab6DiegoMorales1132119 {
 		}
 		return -1;
 	}
-};
-}
+	};
+	};

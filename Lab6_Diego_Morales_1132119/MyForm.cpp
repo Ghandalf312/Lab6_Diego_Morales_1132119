@@ -10,4 +10,4 @@ int main(array<String^>^ args) {
 	Lab6DiegoMorales1132119::MyForm form;
 	Application::Run(% form);
 	return 0;
-}
+};
